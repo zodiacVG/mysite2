@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Student Manager</title>
+</head>
+<h1>Student Manage Home</h1>
+<body style="margin: 0 auto;text-align: center;">
+    <form method="post" action="/search-student">
+        {% csrf_token %}
+        Input the student name:
+        <input type="text" name="name">
+        <input type="submit" value="search">
+        <a href="/add-student">
+            <input type="button" value="添加"></a>
+    </form>
+    <table border="1" style="margin: 0 auto;text-align: center;">
+        <tr>
+            <th>ID</th>
+            <th>name</th>
+            <th>dept_name</th>
+            <th>tot_cred</th>
+        </tr> {% for item in students %} <tr>
+            <td>{{item.ID}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.dept_name}}</td>
+            <td>{{item.tot_cred}}</td>
+            <td> <a href="{% url 'modifyStudent' item.ID  %}">修改</a></td>
+            <td> <a href="{% url 'deleteStudent' item.ID  %}">删除</a></td>
+        </tr> {% endfor %}
+    </table>
+</body>
+
+</html>

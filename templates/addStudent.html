@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Manager</title>
+</head>
+<body style="margin: 0 auto;text-align: center;">
+<h1>Add Student</h1>
+<form method="post" action="/add-student">    action表示将表单提交到这个界面
+    {% csrf_token %}
+    Input the student ID:
+    <input type="text" name="ID">
+    <br>
+    Input the student name:
+    <input type="text" name="name">
+    <br>
+    Input the student dept_name:
+    <input type="text" name="dept_name">
+    <br>
+    Input the student tot_cred:
+    <input type="text" name="tot_cred">
+    <br>
+    <input type="submit" value="添加">
+</form>
+
+<table border="1" style="margin: 0 auto;text-align: center;">
+    <tr>
+        <th>ID</th>
+        <th>name</th>
+        <th>dept_name</th>
+        <th>tot_cred</th>
+    </tr> {% for item in students %}
+    <tr>
+        <td>{{ item.ID }}</td>
+        <td>{{ item.name }}</td>
+        <td>{{ item.dept_name }}</td>
+        <td>{{ item.tot_cred }}</td>
+    </tr> {% endfor %}
+</table>
+
+</body>
+</html>
