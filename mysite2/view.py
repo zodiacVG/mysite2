@@ -89,7 +89,30 @@ def addInstructor(request):
 
 
 def modifyInstructor(request, id):
-    return render(request, 'modifyInstructor.html')
+    db = pymysql.connect("localhost", "testuser", "PlayStation5", "dbsclab2020", port=3306,
+                         cursorclass=pymysql.cursors.DictCursor)
+    cursor = db.cursor()
+    ctx = {}
+    if request.POST:     #如果有传入数据
+        ID = request.POST['ID']
+        name = request.POST['name']
+        dept_name = request.POST['dept_name']
+        salary = request.POST['salary']
+        sql = "update instructor set ID=%s,name=%s,dept_name=%s,salary=%s where ID=%s"    #修改记录
+        cursor.execute(sql, [ID, name, dept_name, salary,ID])
+        sql2 = "select * from instructor where ID=%s"
+        cursor.execute(sql2, ID)
+        db.commit()
+        data = cursor.fetchall()
+        ctx['instructor'] = data
+    else:
+        sql = "select * from instructor where ID=%s"
+        cursor.execute(sql, id)
+        db.commit()
+        data = cursor.fetchall()
+        ctx['instructor'] = data
+
+    return render(request, 'modifyInstructor.html',ctx)
 
 
 def deleteInstructor(request, id):
