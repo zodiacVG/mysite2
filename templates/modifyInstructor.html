@@ -5,6 +5,26 @@
     <title>Student Manager</title>
 </head>
 <body>
+<h1>Modify Instructor </h1>
+
+<form method="post" action="/modify-instructor/3199">
+    {% for item in instructor %}
+        {% csrf_token %}
+        Input the student ID:
+        <input type="text" name="ID" value="{{ item.ID }}">
+        <br>
+        Input the student name:
+        <input type="text" name="name" value="{{ item.name }}">
+        <br>
+        Input the student dept_name:
+        <input type="text" name="dept_name" value="{{ item.dept_name }}">
+        <br>
+        Input the student salary:
+        <input type="text" name="salary" value="{{ item.salary }}">
+        <br>
+        <input type="submit" value="修改">
+    {% endfor %}
+</form>
 
 </body>
 </html>
