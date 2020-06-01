@@ -22,4 +22,9 @@ urlpatterns = [
     url(r'^add-student$', view.addStudent),
     url(r'^modify-student/(?P<id>\d+)$', view.modifyStudent, name='modifyStudent'),
     url(r'^delete-student/(?P<id>\d+)$', view.deleteStudent, name='deleteStudent'),
+
+    url(r'^search-instructor$', view.show_instructor),
+    url(r'^add-instructor$', view.addInstructor),
+    url(r'^modify-instructor/(?P<id>\d+)$', view.modifyInstructor, name='modifyInstructor'),
+    url(r'^delete-instructor/(?P<id>\d+)$', view.deleteInstructor, name='deleteInstructor'),
 ]

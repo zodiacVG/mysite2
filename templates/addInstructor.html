@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>add instructor</title>
+</head>
+<body style="margin: 0 auto;text-align: center;">
+<h1>Add Instructor</h1>
+<form method="post" action="/add-instructor">
+
+{#    action表示将表单提交到这个界面#}
+
+    {% csrf_token %}
+    Input the ID varchar(5):
+    <input type="text" name="ID">
+    <br>
+    Input the name:
+    <input type="text" name="name">
+    <br>
+    Input the dept_name:
+    <input type="text" name="dept_name">
+    <br>
+    Input the salary decimal(8,2):
+    <input type="text" name="salary">
+    <br>
+    <input type="submit" value="添加">
+</form>
+
+<table border="1" style="margin: 0 auto;text-align: center;">
+    <tr>
+        <th>ID</th>
+        <th>name</th>
+        <th>dept_name</th>
+        <th>salary</th>
+    </tr> {% for item in instructors %}
+    <tr>
+        <td>{{ item.ID }}</td>
+        <td>{{ item.name }}</td>
+        <td>{{ item.dept_name }}</td>
+        <td>{{ item.salary }}</td>
+    </tr> {% endfor %}
+</table>
+
+</body>
+</html>
